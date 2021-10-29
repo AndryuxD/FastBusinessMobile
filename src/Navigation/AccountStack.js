@@ -19,7 +19,6 @@ export default function AccountStack() {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      headerMode="screen"
       screenOptions={{
         headerTintColor: "white",
         headerStyle: { backgroundColor: "#16222b" },
@@ -31,25 +30,9 @@ export default function AccountStack() {
         options={{ title: "cuenta", headerShown: false }}
       />
       <Stack.Screen
-        name="change-name"
+        name="change-personal-info"
         component={ChangeName}
-        options={{
-          title: "Cambiar nombre y Apellidos",
-        }}
-      />
-      <Stack.Screen
-        name="change-email"
-        component={ChangeEmail}
-        options={{
-          title: "Cambiar el email",
-        }}
-      />
-      <Stack.Screen
-        name="change-username"
-        component={ChangeUsername}
-        options={{
-          title: "Cambiar el User name",
-        }}
+        options={{ title: "Cambiar datos personales", headerShown: false }}
       />
       <Stack.Screen
         name="change-password"
@@ -89,3 +72,26 @@ export default function AccountStack() {
     </Stack.Navigator>
   );
 }
+/*
+      <Stack.Screen
+        name="change-name"
+        component={ChangeName}
+        options={{
+          title: "Cambiar nombre y Apellidos",
+        }}
+      />
+      <Stack.Screen
+        name="change-email"
+        component={ChangeEmail}
+        options={{
+          title: "Cambiar el email",
+        }}
+      />
+      <Stack.Screen
+        name="change-username"
+        component={ChangeUsername}
+        options={{
+          title: "Cambiar el User name",
+        }}
+      />
+      */

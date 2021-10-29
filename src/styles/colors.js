@@ -26,6 +26,7 @@ const colors = {
   bgLight: "#fff",
   bgDark: "#2B53C1",
   FB: "#007bff",
+  PP: "#3b7bbf",
 };
 
 export default colors;
