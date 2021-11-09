@@ -46,7 +46,7 @@ export default function Donaciones() {
           }}
           style={styles.button}
         >
-          Go to paypal
+          ir a paypal
         </Button>
       </View>
     </View>
