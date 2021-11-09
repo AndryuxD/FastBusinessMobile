@@ -5,7 +5,7 @@ export default function StatusBarCuston(props) {
     const { backgroundColor, ...rest } = props;
     return (
         <>
-            <StatusBar backgroundColor={"#16222b"} {...rest} />
+            <StatusBar backgroundColor={"#79B4B7"} {...rest} />
             <SafeAreaView
                 style={{
                     flex: 0,

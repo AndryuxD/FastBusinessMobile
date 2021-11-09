@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
 import StatusBar from "../Components/Search/StatusBar";
+import Search from "../Components/Search/Search";
 import ScreenLoading from "../Components/Search/ScreenLoading";
 import { getMeApi } from "../api/user";
 import useAuth from "../hooks/useAuth";
@@ -27,8 +28,12 @@ export default function HomeInv() {
       {!user ? (
         <ScreenLoading size="large" />
       ) : (
-        <View style={styles.container}>
+        <View>
+          <Search/>
+          <View style={styles.container}>
+           
           <View style={styles.row}>
+         
             <Text style={styles.tittle}>Bienvenido, Inversionista </Text>
             <Text style={styles.tittleName}>
               {user.name && user.lastname
@@ -37,6 +42,9 @@ export default function HomeInv() {
             </Text>
           </View>
         </View>
+
+        </View>
+        
       )}
     </>
   );

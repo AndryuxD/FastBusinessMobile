@@ -38,7 +38,7 @@ export default function Account() {
                 <>
                     <Search />
                     <ScrollView>
-                        <UserInfo user={user} />
+                       {/*<UserInfo user={user} />*/} 
                         <Menu />
                     </ScrollView>
                 </>

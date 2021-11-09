@@ -181,10 +181,9 @@ export default function App(props) {
               value={formik.values.pregunta}
               error={formik.errors.pregunta}
             >
-              Para ver la respuesta a su pregunta por favor asiste al area de
-              preguntas
+             
             </Text>
-            <Button
+            <Button icon="email-send"
               mode="contained"
               style={formStyles.btnSucces}
               onPress={formik.handleSubmit}
@@ -192,6 +191,9 @@ export default function App(props) {
             >
               Enviar
             </Button>
+            <Text>
+            Para ver la respuesta a su pregunta por favor asiste al area de preguntas.
+            </Text>
           </View>
         </ScrollView>
       </ImageBackground>

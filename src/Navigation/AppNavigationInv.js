@@ -54,10 +54,10 @@ function setIcon(route, routeStatus) {
 
 const styles = StyleSheet.create({
   navigation: {
-    backgroundColor: colors.bgDark,
+    backgroundColor: "#A9E4D7",
   },
   icon: {
-    fontSize: 20,
+    fontSize: 23,
     color: colors.fontLight,
   },
 });
