@@ -4,6 +4,8 @@ import colors from "./colors";
 const formStyles = StyleSheet.create({
   input: {
     marginBottom: 20,
+    borderRadius: 15,
+    borderTopLeftRadius: 15,
   },
   btnSucces: {
     padding: 5,

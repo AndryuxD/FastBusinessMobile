@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, ToastAndroid } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import {
+  View,
+  Text,
+  ToastAndroid,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import Toast from "react-native-root-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,11 +13,14 @@ import * as Facebook from "expo-facebook";
 import useAuth from "../../hooks/useAuth";
 import { loginApi, registerApi } from "../../api/user";
 import { formStyles } from "../../styles";
+import global_styles from "../../styles/global_styles";
+import Icon from "react-native-vector-icons/Feather";
 
 export default function LoginForm(props) {
   const { changeForm } = props;
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
+  const [secure, setSecure] = useState(true);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -127,47 +135,71 @@ export default function LoginForm(props) {
   }
   //returna el formulario de login.
   return (
-    <View>
-      <TextInput
-        label="Email o User Name"
-        style={formStyles.input}
-        onChangeText={(text) => formik.setFieldValue("identifier", text)}
-        value={formik.values.identifier}
-        error={formik.errors.identifier}
-      />
-      <TextInput
-        label="Password"
-        style={formStyles.input}
-        onChangeText={(text) => formik.setFieldValue("password", text)}
-        value={formik.values.password}
-        error={formik.errors.password}
-        secureTextEntry
-      />
+    <View style={global_styles.generalContainer}>
+      <View style={global_styles.viewInputBox}>
+        <View style={global_styles.viewInputIcon}>
+          <Icon style={{ color: "#B9B9B9" }} size={26} name="user" />
+        </View>
+        <TextInput
+          style={global_styles.textInput}
+          placeholder="Usuario"
+          autoFocus={false}
+          maxLength={55}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholderTextColor="#D4D4D4"
+          onChangeText={(text) => formik.setFieldValue("identifier", text)}
+          value={formik.values.identifier}
+          error={formik.errors.identifier}
+        />
+      </View>
 
-      <Button
-        mode="contained"
-        style={formStyles.btnSucces}
+      <View style={global_styles.viewInputBox2}>
+        <View style={global_styles.viewInputIcon}>
+          <Icon style={{ color: "#B9B9B9" }} size={26} name="lock" />
+        </View>
+        <TextInput
+          style={global_styles.textInputForPassword}
+          placeholder="Contraseña"
+          maxLength={55}
+          placeholderTextColor="#D4D4D4"
+          secureTextEntry={secure}
+          onChangeText={(text) => formik.setFieldValue("password", text)}
+          value={formik.values.password}
+          error={formik.errors.password}
+        />
+        <View style={global_styles.viewInputIconSecure}>
+          {formik.values.password ? (
+            <Icon
+              style={{ color: "#B9B9B9" }}
+              size={25}
+              name="eye"
+              onPress={() => setSecure(!secure)}
+            />
+          ) : (
+            <></>
+          )}
+        </View>
+      </View>
+
+      <TouchableOpacity
+        style={global_styles.loginBtn}
         onPress={formik.handleSubmit}
         loading={loading}
       >
-        Iniciar sesion
-      </Button>
-      <Button
-        mode="text"
-        style={formStyles.btnText}
-        labelStyle={formStyles.btnTextLabel}
+        <Text style={global_styles.loginText}>Iniciar sesion</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={global_styles.changeViewBtn}
         onPress={changeForm}
       >
-        Registrarse
-      </Button>
-      <Button
-        mode="contained"
-        style={formStyles.btnTextFB}
-        labelStyle={formStyles.btnTextLabelFB}
-        onPress={logInFB}
-      >
-        Connect with Facebook
-      </Button>
+        <Text style={global_styles.changeViewText}>Registrarse</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={global_styles.fbLoginBtn} onPress={logInFB}>
+        <Text style={global_styles.loginText}>Connect with Facebook</Text>
+      </TouchableOpacity>
     </View>
   );
 }

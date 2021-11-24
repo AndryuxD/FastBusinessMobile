@@ -7,18 +7,24 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import RegisterForm from "../Components/Auth/RegisterForm";
 import LoginForm from "../Components/Auth/LoginForm";
 import logo from "../../assets/FBICON.jpeg";
 import { layoutStyle } from "../styles";
+import global_styles from "../styles/global_styles";
+import backgroundLogin from "../../assets/backgroundLogin.png";
 
 export default function Auth() {
   const [showLogin, setShowLogin] = useState(true);
   const changeForm = () => setShowLogin(!showLogin);
 
   return (
-    <View style={layoutStyle.container}>
+    <ImageBackground
+      style={global_styles.loginBackground}
+      source={backgroundLogin}
+    >
       <ScrollView behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <Image style={styles.logo} source={logo} />
         {showLogin ? (
@@ -27,7 +33,7 @@ export default function Auth() {
           <RegisterForm changeForm={changeForm} />
         )}
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 }
 
