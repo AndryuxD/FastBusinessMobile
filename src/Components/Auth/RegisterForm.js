@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Text } from "react-native";
-import { Button } from "react-native-paper";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  ToastAndroid,
+  Text,
+} from "react-native";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Toast from "react-native-root-toast";
 import { registerApi } from "../../api/user";
-import { formStyles } from "../../styles";
 import styles from "../../styles/global_styles";
 import Icon from "react-native-vector-icons/Feather";
 import Icon2 from "react-native-vector-icons/Ionicons";
@@ -25,14 +27,18 @@ export default function RegisterForm(props) {
       try {
         await registerApi(formData);
         changeForm();
-        Toast.show("Registrado correctamente", {
-          position: Toast.positions.CENTER,
-        });
+        ToastAndroid.showWithGravity(
+          "Registrado correctamente",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
       } catch (error) {
         setLoading(false);
-        Toast.show("!Ups¡ algo salio mal...", {
-          position: Toast.positions.CENTER,
-        });
+        ToastAndroid.showWithGravity(
+          "!Ups¡ algo salio mal...",
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
       }
     },
   });
@@ -209,6 +215,7 @@ function initialValues() {
     empresa: "",
     rfc: "",
     clabe: "",
+    tipousuario: "emprendedor",
   };
 }
 

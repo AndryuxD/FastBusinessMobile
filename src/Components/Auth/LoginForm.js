@@ -34,9 +34,11 @@ export default function LoginForm(props) {
         if (response.statusCode) throw "error en el usuario o contraseña";
         login(response);
       } catch (error) {
-        Toast.show(error, {
-          position: Toast.positions.CENTER,
-        });
+        ToastAndroid.showWithGravity(
+          error,
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER
+        );
         //kkjsksk
         setLoading(false);
       }

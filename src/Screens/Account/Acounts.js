@@ -13,36 +13,33 @@ import { getMeApi } from "../../api/user";
 import useAuth from "../../hooks/useAuth";
 import colors from "../../styles/colors";
 
-
-
 export default function Account() {
-    const [user, setUser] = useState(null);
-    const { auth } = useAuth();
+  const [user, setUser] = useState(null);
+  const { auth } = useAuth();
 
-    useFocusEffect(
-        useCallback(() => {
-            (async () => {
-                setUser(null);
-                const response = await getMeApi(auth.token);
-                setUser(response);
-            })();
-        }, [])
-    );
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        setUser(null);
+        const response = await getMeApi(auth.token);
+        setUser(response);
+      })();
+    }, [])
+  );
 
-    return (
+  return (
+    <>
+      <StatusBar backgroundColor={colors.bgDark} barStyle="light-content" />
+      {!user ? (
+        <ScreenLoading size="large" />
+      ) : (
         <>
-            <StatusBar backgroundColor={colors.bgDark} barStyle="light-content" />
-            {!user ? (
-                <ScreenLoading size="large" />
-            ) : (
-                <>
-                    <Search />
-                    <ScrollView>
-                       {/*<UserInfo user={user} />*/} 
-                        <Menu />
-                    </ScrollView>
-                </>
-            )}
+          <ScrollView>
+            {<UserInfo user={user} />}
+            <Menu />
+          </ScrollView>
         </>
-    );
+      )}
+    </>
+  );
 }

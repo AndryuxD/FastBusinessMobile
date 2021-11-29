@@ -12,6 +12,24 @@ export async function getLastProductsApi(limit = 30) {
   }
 }
 
+export async function getListProductsApi(auth) {
+  try {
+    const url = `${API_URL}/productos?_orders=${auth.idUser}`;
+    const params = {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `Bearer ${auth.token}`,
+      },
+    };
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export async function getProductApi(id) {
   try {
     const url = `${API_URL}/productos/${id}`;
@@ -45,6 +63,28 @@ export async function registerApi(formData) {
     return null;
   }
 }
+///productos/:id
+
+export async function updateProductoApi(FormData, auth) {
+  try {
+    const url = `${API_URL}/productos/${FormData._id}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.token}`,
+      },
+      body: JSON.stringify(FormData),
+    };
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export async function registerImgApi(formData) {
   try {
     const url = `${IMG_URL}/PruebaIMG/PruebaIMG.php`;

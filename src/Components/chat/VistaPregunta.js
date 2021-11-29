@@ -5,7 +5,7 @@ import Pregunta from "./Pregunta";
 
 export default function ListOrder(props) {
   const { orders } = props;
-    console.log(orders);
+  console.log(orders);
   return (
     <View style={styles.container}>
       {map(orders, (order) => (

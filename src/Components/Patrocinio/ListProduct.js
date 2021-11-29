@@ -26,10 +26,7 @@ export default function ListProduct(props) {
   return (
     <View style={styles.container}>
       {map(productos, (productos) => (
-        <TouchableWithoutFeedback
-          key={productos._id}
-          onPress={() => goToProduct(productos._id)}
-        >
+        <TouchableWithoutFeedback key={productos._id}>
           <View style={styles.containerProducto}>
             <View style={styles.product}>
               <Image

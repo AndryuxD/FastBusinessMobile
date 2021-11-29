@@ -6,31 +6,25 @@ import AwsomeIcon from "react-native-vector-icons/FontAwesome";
 import colors from "../styles/colors";
 import HomeInv from "../Screens/HomeInv";
 import AccountStack from "./AccountStack";
+import Donaciones from "../Screens/Donaciones";
+import ProductStack from "./ProductStack";
+import PatrocinioStack from "./PatrocinioStack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-const Tab = createMaterialBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function AppNavigationInv() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        barStyle={styles.navigation}
-        screenOptions={({ route }) => ({
-          tabBarIcon: (routeStatus) => {
-            return setIcon(route, routeStatus);
-          },
-        })}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeInv}
-          options={{ tittle: "Inicio" }}
+      <Drawer.Navigator>
+        <Drawer.Screen name="Inicio" component={ProductStack} />
+        <Drawer.Screen
+          name="Mis proyectos patrocinados"
+          component={PatrocinioStack}
         />
-        <Tab.Screen
-          name="Account"
-          component={AccountStack}
-          options={{ tittle: "Mi cuenta" }}
-        />
-      </Tab.Navigator>
+        <Drawer.Screen name="Mi cuenta" component={AccountStack} />
+        <Drawer.Screen name="Donaciones" component={Donaciones} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
